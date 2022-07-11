@@ -1,0 +1,1 @@
+E:\git_hub\opencv343-android-videocapture\VideoReader\videoLibrary\build\intermediates\cmake\debug\obj\armeabi-v7a

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VideoReader.iml" filepath="$PROJECT_DIR$/.idea/modules/VideoReader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/VideoReader.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/VideoReader.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/videoLibrary/VideoReader.videoLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/videoLibrary/VideoReader.videoLibrary.iml" />
+    </modules>
+  </component>
+</project>

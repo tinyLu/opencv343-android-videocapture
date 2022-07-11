@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\developer_install_soft\\android-sdk-windows\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+      "-C",
+      "E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\.cxx\\cmake\\debug\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\developer_install_soft\\android-sdk-windows\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+    "-C",
+    "E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\.cxx\\cmake\\debug\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "videoreader-Debug-armeabi-v7a": {
+      "artifactName": "videoreader",
+      "buildCommandComponents": [
+        "C:\\developer_install_soft\\android-sdk-windows\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+        "-C",
+        "E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\.cxx\\cmake\\debug\\armeabi-v7a",
+        "videoreader"
+      ],
+      "abi": "armeabi-v7a",
+      "output": "E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libvideoreader.so",
+      "runtimeFiles": []
+    }
+  }
+}

@@ -1,0 +1,3 @@
+ninja: Entering directory `E:\git_hub\opencv343-android-videocapture\VideoReader\videoLibrary\.cxx\cmake\debug\armeabi-v7a'
+ninja: no work to do.
+[0x7FFBC381E0A4] ANOMALY: use of REX.w is meaningless (default operand size is 64)

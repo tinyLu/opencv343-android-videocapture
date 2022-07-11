@@ -1,0 +1,6 @@
+# ninja log v5
+2	764	679234630	CMakeFiles/videoreader.dir/src/main/cpp/Util.cpp.o	d7b39de0c69b4b25
+39	2653	679234632	CMakeFiles/videoreader.dir/src/main/cpp/callback/VideoCallback.cpp.o	3e4c17ccac6c58e8
+21	2809	679234632	CMakeFiles/videoreader.dir/src/main/cpp/videoreader/VideoReader.cc.o	4323f6c769c3a0df
+58	2982	679234632	CMakeFiles/videoreader.dir/src/main/cpp/jni_bridge.cpp.o	ee8af5c72c06a1d6
+2982	5152	679234634	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libvideoreader.so	99cdfc3dd7a123a0

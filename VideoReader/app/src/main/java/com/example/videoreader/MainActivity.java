@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                VideoPresenter.getInstance().startReadVideo("/sdcard/testvideo.mp4",30);
+                VideoPresenter.getInstance().startReadVideo("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"/*"/sdcard/testvideo.mp4"*/,30);
 
             }
         });
@@ -101,10 +101,11 @@ public class MainActivity extends Activity {
 
     public void regVideoCallback(){
 
-        mBitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
+        mBitmap = Bitmap.createBitmap(240, 160, Bitmap.Config.ARGB_8888);
         VideoPresenter.getInstance().regVideoCallback(new VideoPresenter.IVideoCallback() {
             @Override
             public void onImageShow() {
+                Log.d(TAG, "onImageShow<..");
                 showImage();
             }
 

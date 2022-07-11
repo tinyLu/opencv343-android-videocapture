@@ -57,7 +57,10 @@ void VideoReader::StartPlay(const std::string &video_path, int read_fps) {
         }
 
         if (videoCallback != nullptr){
+            LOGI("call videoCallback");
             videoCallback(img);
+        } else {
+            LOGI("videoCallback is null!!");
         }
 
         auto current = std::chrono::steady_clock::now();

@@ -1,0 +1,25 @@
+[
+{
+  "directory": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a",
+  "command": "C:\\developer_install_soft\\android-sdk-windows\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi22 --sysroot=C:/developer_install_soft/android-sdk-windows/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dvideoreader_EXPORTS -I../../../../src/main/cpp/include -I../../../../src/main/cpp/videoreader -I../../../../src/main/cpp/callback -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -LE:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/jniLibs/armeabi-v7a -fno-limit-debug-info  -fPIC   -std=gnu++11 -o CMakeFiles\\videoreader.dir\\src\\main\\cpp\\Util.cpp.o -c E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\src\\main\\cpp\\Util.cpp",
+  "file": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/cpp/Util.cpp"
+},
+
+{
+  "directory": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a",
+  "command": "C:\\developer_install_soft\\android-sdk-windows\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi22 --sysroot=C:/developer_install_soft/android-sdk-windows/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dvideoreader_EXPORTS -I../../../../src/main/cpp/include -I../../../../src/main/cpp/videoreader -I../../../../src/main/cpp/callback -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -LE:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/jniLibs/armeabi-v7a -fno-limit-debug-info  -fPIC   -std=gnu++11 -o CMakeFiles\\videoreader.dir\\src\\main\\cpp\\jni_bridge.cpp.o -c E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\src\\main\\cpp\\jni_bridge.cpp",
+  "file": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/cpp/jni_bridge.cpp"
+},
+
+{
+  "directory": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a",
+  "command": "C:\\developer_install_soft\\android-sdk-windows\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi22 --sysroot=C:/developer_install_soft/android-sdk-windows/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dvideoreader_EXPORTS -I../../../../src/main/cpp/include -I../../../../src/main/cpp/videoreader -I../../../../src/main/cpp/callback -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -LE:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/jniLibs/armeabi-v7a -fno-limit-debug-info  -fPIC   -std=gnu++11 -o CMakeFiles\\videoreader.dir\\src\\main\\cpp\\videoreader\\VideoReader.cc.o -c E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\src\\main\\cpp\\videoreader\\VideoReader.cc",
+  "file": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/cpp/videoreader/VideoReader.cc"
+},
+
+{
+  "directory": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a",
+  "command": "C:\\developer_install_soft\\android-sdk-windows\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi22 --sysroot=C:/developer_install_soft/android-sdk-windows/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dvideoreader_EXPORTS -I../../../../src/main/cpp/include -I../../../../src/main/cpp/videoreader -I../../../../src/main/cpp/callback -I../../../../src/main/cpp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -LE:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/jniLibs/armeabi-v7a -fno-limit-debug-info  -fPIC   -std=gnu++11 -o CMakeFiles\\videoreader.dir\\src\\main\\cpp\\callback\\VideoCallback.cpp.o -c E:\\git_hub\\opencv343-android-videocapture\\VideoReader\\videoLibrary\\src\\main\\cpp\\callback\\VideoCallback.cpp",
+  "file": "E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/src/main/cpp/callback/VideoCallback.cpp"
+}
+]
