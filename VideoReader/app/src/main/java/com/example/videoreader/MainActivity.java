@@ -63,7 +63,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                VideoPresenter.getInstance().startReadVideo("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"/*"/sdcard/testvideo.mp4"*/,30);
+                //VideoPresenter.getInstance().startReadVideo("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"/*"/sdcard/testvideo.mp4"*/,30);
+                //VideoPresenter.getInstance().startReadVideo("rtsp://192.168.1.249:8554", 30);
+                VideoPresenter.getInstance().startReadVideo("rtmp://10.180.90.38:1935/live/aaa", 30);
 
             }
         });
@@ -101,7 +103,7 @@ public class MainActivity extends Activity {
 
     public void regVideoCallback(){
 
-        mBitmap = Bitmap.createBitmap(240, 160, Bitmap.Config.ARGB_8888);
+        mBitmap = Bitmap.createBitmap(480, 640, Bitmap.Config.ARGB_8888);
         VideoPresenter.getInstance().regVideoCallback(new VideoPresenter.IVideoCallback() {
             @Override
             public void onImageShow() {
@@ -203,5 +205,7 @@ public class MainActivity extends Activity {
 
         return super.onKeyDown(keyCode, event);
     }
+
+
 
 }

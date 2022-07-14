@@ -1,7 +1,0 @@
-Executable : C:\developer_install_soft\android-sdk-windows\cmake\3.10.2.4988404\bin\ninja.exe
-arguments : 
--C
-E:\git_hub\opencv343-android-videocapture\VideoReader\videoLibrary\.cxx\cmake\debug\arm64-v8a
-videoreader
-jvmArgs : 
-

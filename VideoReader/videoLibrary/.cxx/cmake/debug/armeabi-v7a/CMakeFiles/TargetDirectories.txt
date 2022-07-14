@@ -1,3 +1,0 @@
-E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/videoreader.dir
-E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
-E:/git_hub/opencv343-android-videocapture/VideoReader/videoLibrary/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
