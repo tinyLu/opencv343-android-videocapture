@@ -1,2 +1,6 @@
 include ':app', ':videoLibrary'
 rootProject.name='VideoReader'
+include ':rtsp'
+include ':rtmp'
+include ':encoder'
+include ':rtplibrary'

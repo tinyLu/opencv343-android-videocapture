@@ -7,8 +7,6 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,8 +14,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.videolibrary.VideoPresenter;
-import com.example.videoreader.R;
 
 public class MainActivity extends Activity {
 

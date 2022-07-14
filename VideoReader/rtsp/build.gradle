@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+android {
+  compileSdkVersion 32
+
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion 32
+    versionCode 1
+    versionName "1.1"
+    buildConfigField 'int', 'VERSION_CODE', "1"
+    buildConfigField 'String', 'VERSION_NAME', "\"1.1\""
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      consumerProguardFiles 'proguard-rules.pro'
+    }
+  }
+
+  /*publishing {
+    singleVariant("release")
+  }*/
+}
+
+afterEvaluate {
+  publishing {
+    publications {
+      // Creates a Maven publication called "release".
+      release(MavenPublication) {
+        // Applies the component for the release build variant.
+        from components.release
+
+        // You can then customize attributes of the publication as shown below.
+        //groupId = "$library_group"
+        artifactId = "rtsp"
+        version = "$version_name"
+      }
+    }
+  }
+}
+
+dependencies {
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+  testImplementation 'junit:junit:4.13.2'
+  testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+}
