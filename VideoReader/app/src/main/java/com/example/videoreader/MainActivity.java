@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.ImageFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -14,10 +15,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.videolibrary.VideoPresenter;
+import com.pedro.encoder.Frame;
+import com.pedro.rtmp.utils.ConnectCheckerRtmp;
+import com.rtmp.sender.VideoSenderManager;
+import com.util.ImageUtils;
 
 public class MainActivity extends Activity {
 
@@ -35,6 +41,43 @@ public class MainActivity extends Activity {
 
 
     private Bitmap mBitmap = null;
+
+    private VideoSenderManager videoSenderManager = new VideoSenderManager(new ConnectCheckerRtmp() {
+        @Override
+        public void onConnectionStartedRtmp(@NonNull String rtmpUrl) {
+
+        }
+
+        @Override
+        public void onConnectionSuccessRtmp() {
+
+        }
+
+        @Override
+        public void onConnectionFailedRtmp(@NonNull String reason) {
+
+        }
+
+        @Override
+        public void onNewBitrateRtmp(long bitrate) {
+
+        }
+
+        @Override
+        public void onDisconnectRtmp() {
+
+        }
+
+        @Override
+        public void onAuthErrorRtmp() {
+
+        }
+
+        @Override
+        public void onAuthSuccessRtmp() {
+
+        }
+    });
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +106,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                if (videoSenderManager.prepareVideo()) {
+                    videoSenderManager.startStream("rtmp://10.180.90.38:1935/live/bbb");
+                }
+
                 //VideoPresenter.getInstance().startReadVideo("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"/*"/sdcard/testvideo.mp4"*/,30);
                 //VideoPresenter.getInstance().startReadVideo("rtsp://192.168.1.249:8554", 30);
                 VideoPresenter.getInstance().startReadVideo("rtmp://10.180.90.38:1935/live/aaa", 30);
+
 
             }
         });
@@ -120,6 +168,9 @@ public class MainActivity extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
+
+                videoSenderManager.inputYUVData(new Frame(ImageUtils.bitmapToNv21(mBitmap, 480, 640), 0, false, ImageFormat.NV21));
 
                 mImageView.setImageBitmap(mBitmap);
             }
