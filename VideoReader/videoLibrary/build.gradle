@@ -2,17 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-
-
     compileSdkVersion 32
-    buildToolsVersion "26.0.3"
-
     defaultConfig {
         minSdkVersion 22
         targetSdkVersion 32
-        versionCode 1
-        versionName "1.0.0"
-
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_TOOLCHAIN=clang",
@@ -22,11 +15,6 @@ android {
 
             }
         }
-
-
-
-
-
     }
 
     buildTypes {
@@ -36,17 +24,11 @@ android {
         }
     }
 
-
-
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
         }
     }
-
-//    lintOptions {
-//        abortOnError false
-//    }
 
 }
 

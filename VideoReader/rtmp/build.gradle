@@ -8,33 +8,10 @@ android {
   defaultConfig {
     minSdkVersion 16
     targetSdkVersion 32
-    versionCode 1
-    versionName "1.1"
   }
   buildTypes {
     release {
       minifyEnabled false
-    }
-  }
-
-  /*publishing {
-    singleVariant("release")
-  }*/
-}
-
-afterEvaluate {
-  publishing {
-    publications {
-      // Creates a Maven publication called "release".
-      release(MavenPublication) {
-        // Applies the component for the release build variant.
-        from components.release
-
-        // You can then customize attributes of the publication as shown below.
-        //groupId = "$library_group"
-        artifactId = "rtmp"
-        version = "$version_name"
-      }
     }
   }
 }
