@@ -64,6 +64,7 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
     protected void getH264DataRtp(ByteBuffer h264Buffer, MediaCodec.BufferInfo info) {
         rtmpClient.sendVideo(h264Buffer, info);
     }
+
     /**
      * Need be called after @prepareVideo or/and @prepareAudio. This method override resolution of
      *

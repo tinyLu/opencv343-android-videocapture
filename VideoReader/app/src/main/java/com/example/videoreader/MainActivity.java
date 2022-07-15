@@ -2,15 +2,12 @@ package com.example.videoreader;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -93,6 +90,36 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_A:
+                startStream();
+                break;
+            case KeyEvent.KEYCODE_B:
+                stopStream();
+                break;
+            default:
+                break;
+        }
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+    private void startStream() {
+        if (videoSenderManager.prepareVideo()) {
+            videoSenderManager.startStream("rtmp://10.180.90.38:1935/live/bbb");
+        }
+
+        //VideoPresenter.getInstance().startReadVideo("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"/*"/sdcard/testvideo.mp4"*/,30);
+        //VideoPresenter.getInstance().startReadVideo("rtsp://192.168.1.249:8554", 30);
+        VideoPresenter.getInstance().startReadVideo("rtmp://10.180.90.38:1935/live/aaa", 30);
+    }
+
+    private void stopStream() {
+        VideoPresenter.getInstance().stopReadVideo();
+        videoSenderManager.stopStream();
+    }
 
     private void  initView(){
 
@@ -102,49 +129,15 @@ public class MainActivity extends Activity {
         mBtnStartRecord = findViewById(R.id.btn_start_record);
         mBtnStopRecord = findViewById(R.id.btn_stop_record);
 
-        mBtnStartPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mBtnStartPlay.setOnClickListener(v -> startStream());
 
-                if (videoSenderManager.prepareVideo()) {
-                    videoSenderManager.startStream("rtmp://10.180.90.38:1935/live/bbb");
-                }
-
-                //VideoPresenter.getInstance().startReadVideo("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4"/*"/sdcard/testvideo.mp4"*/,30);
-                //VideoPresenter.getInstance().startReadVideo("rtsp://192.168.1.249:8554", 30);
-                VideoPresenter.getInstance().startReadVideo("rtmp://10.180.90.38:1935/live/aaa", 30);
+        mBtnStopPlay.setOnClickListener(v -> stopStream());
 
 
-            }
-        });
-
-        mBtnStopPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                VideoPresenter.getInstance().stopReadVideo();
-            }
-        });
+        mBtnStartRecord.setOnClickListener(v -> VideoPresenter.getInstance().startRecordVideo("/sdcard/recordVideo.avi"));
 
 
-        mBtnStartRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                VideoPresenter.getInstance().startRecordVideo("/sdcard/recordvideo.avi");
-
-            }
-        });
-
-
-        mBtnStopRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                VideoPresenter.getInstance().stopRecordVideo();
-
-            }
-        });
+        mBtnStopRecord.setOnClickListener(v -> VideoPresenter.getInstance().stopRecordVideo());
      }
 
 
@@ -152,28 +145,18 @@ public class MainActivity extends Activity {
     public void regVideoCallback(){
 
         mBitmap = Bitmap.createBitmap(480, 640, Bitmap.Config.ARGB_8888);
-        VideoPresenter.getInstance().regVideoCallback(new VideoPresenter.IVideoCallback() {
-            @Override
-            public void onImageShow() {
-                Log.d(TAG, "onImageShow<..");
-                showImage();
-            }
-
+        VideoPresenter.getInstance().regVideoCallback(() -> {
+            Log.d(TAG, "onImageShow<..");
+            videoSenderManager.inputYUVData(new Frame(ImageUtils.bitmapToNv21(mBitmap, 480, 640), 0, false, ImageFormat.NV21));
+            showImage();
         }, mBitmap);
 
     }
 
 
     private void showImage(){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-
-                videoSenderManager.inputYUVData(new Frame(ImageUtils.bitmapToNv21(mBitmap, 480, 640), 0, false, ImageFormat.NV21));
-
-                mImageView.setImageBitmap(mBitmap);
-            }
+        runOnUiThread(() -> {
+            mImageView.setImageBitmap(mBitmap);
         });
     }
 
@@ -194,16 +177,11 @@ public class MainActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
         } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
         }
-
 
     }
 
@@ -220,11 +198,9 @@ public class MainActivity extends Activity {
     public void onDestroy() {
         super.onDestroy();
 
-
         if (mBitmap != null){
             mBitmap.recycle();
         }
-
     }
 
 
@@ -234,23 +210,16 @@ public class MainActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("");
             builder.setMessage("您确定要退出APP?");
-            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
+            builder.setPositiveButton("确定", (dialog, which) -> finish());
 
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
+            builder.setNegativeButton("取消", (dialog, which) -> {
             });
-            builder.show();
+            builder.show();*/
+            finish();
+
             return true;
         }
 
