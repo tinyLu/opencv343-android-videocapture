@@ -12,8 +12,6 @@ import com.pedro.encoder.video.GetVideoData;
 import com.pedro.encoder.video.VideoEncoder;
 import com.pedro.rtmp.rtmp.RtmpClient;
 import com.pedro.rtmp.utils.ConnectCheckerRtmp;
-import com.pedro.rtplibrary.base.recording.BaseRecordController;
-import com.pedro.rtplibrary.util.AndroidMuxerRecordController;
 import com.pedro.rtplibrary.util.FpsListener;
 
 import java.nio.ByteBuffer;
@@ -24,17 +22,14 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
     private final RtmpClient rtmpClient;
 
     protected VideoEncoder videoEncoder;
-    protected BaseRecordController recordController;
     private final FpsListener fpsListener = new FpsListener();
 
     private boolean streaming = false;
-    private boolean onPreview = false;
     private int previewWidth, previewHeight;
 
     public VideoSenderManager(ConnectCheckerRtmp connectChecker) {
         rtmpClient = new RtmpClient(connectChecker);
         videoEncoder = new VideoEncoder(this);
-        recordController = new AndroidMuxerRecordController();
     }
 
     @Override
@@ -45,15 +40,11 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
     @Override
     public void getVideoData(ByteBuffer h264Buffer, MediaCodec.BufferInfo info) {
         fpsListener.calculateFps();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            recordController.recordVideo(h264Buffer, info);
-        }
         if (streaming) getH264DataRtp(h264Buffer, info);
     }
 
     @Override
     public void onVideoFormat(MediaFormat mediaFormat) {
-        recordController.setVideoFormat(mediaFormat, true);
     }
 
     @Override
@@ -77,32 +68,18 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
      */
     public void startStream(String url) {
         streaming = true;
-        if (!recordController.isRunning()) {
-            startEncoders();
-        } else {
-            requestKeyFrame();
-        }
+        startEncoders();
         startStreamRtp(url);
-        onPreview = true;
     }
 
     private void startEncoders() {
         videoEncoder.start();
-        onPreview = true;
     }
 
     public void requestKeyFrame() {
         if (videoEncoder.isRunning()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 videoEncoder.requestKeyframe();
-            } else {
-                /*if (glInterface != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    glInterface.removeMediaCodecSurface();
-                }
-                videoEncoder.reset();
-                if (glInterface != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    glInterface.addMediaCodecSurface(videoEncoder.getInputSurface());
-                }*/
             }
         }
     }
@@ -126,11 +103,7 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
             streaming = false;
             stopStreamRtp();
         }
-        if (!recordController.isRecording()) {
-            onPreview = false;
-            videoEncoder.stop();
-            recordController.resetFormats();
-        }
+        videoEncoder.stop();
     }
 
     protected void stopStreamRtp() {
@@ -180,10 +153,9 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
      */
     public boolean prepareVideo(int width, int height, int fps, int bitrate, int iFrameInterval,
                                 int rotation, int avcProfile, int avcProfileLevel) {
-        if (onPreview && width != previewWidth || height != previewHeight
+        if (width != previewWidth || height != previewHeight
                 || fps != videoEncoder.getFps() || rotation != videoEncoder.getRotation()) {
             stopPreview();
-            onPreview = true;
         }
         FormatVideoEncoder formatVideoEncoder = FormatVideoEncoder.YUV420Dynamical;
         return videoEncoder.prepareVideoEncoder(width, height, fps, bitrate, rotation, iFrameInterval,
@@ -196,10 +168,7 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
      * @stopStream to release camera properly if you will close activity.
      */
     public void stopPreview() {
-        if (!isStreaming()
-                && onPreview) {
-
-            onPreview = false;
+        if (!isStreaming()) {
             previewWidth = 0;
             previewHeight = 0;
         } else {
@@ -214,5 +183,4 @@ public class VideoSenderManager implements GetVideoData , GetCameraData {
     public boolean isStreaming() {
         return streaming;
     }
-
 }
