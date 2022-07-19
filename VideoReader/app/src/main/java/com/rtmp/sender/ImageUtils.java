@@ -1,4 +1,4 @@
-package com.util;
+package com.rtmp.sender;
 
 import android.graphics.Bitmap;
 

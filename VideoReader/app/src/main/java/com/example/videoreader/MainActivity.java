@@ -20,7 +20,7 @@ import com.example.videolibrary.VideoPresenter;
 import com.pedro.encoder.Frame;
 import com.pedro.rtmp.utils.ConnectCheckerRtmp;
 import com.rtmp.sender.VideoSenderManager;
-import com.util.ImageUtils;
+import com.rtmp.sender.ImageUtils;
 
 public class MainActivity extends Activity {
 
